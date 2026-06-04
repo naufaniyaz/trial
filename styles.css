@@ -59,24 +59,16 @@ main {
 }
 
 .brand {
+  display: flex;
+  align-items: center;
   color: var(--text);
   text-decoration: none;
 }
 
-.brand-text {
+.brand-logo {
   display: block;
-  font-size: 40px;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  line-height: 1;
-}
-
-.brand-o {
-  display: inline-block;
-  transform: translateY(-1px);
-  font-size: 52px;
-  font-weight: 300;
-  letter-spacing: 0.05em;
+  width: min(238px, 42vw);
+  height: auto;
 }
 
 .topbar-right {
@@ -173,8 +165,9 @@ main {
 }
 
 .missing-panel {
+  margin-top: 12px;
   padding: 18px 30px 20px;
-  border-bottom: 1px solid var(--panel-line);
+  border-top: 1px solid var(--panel-line);
   background: rgba(34, 39, 48, 0.66);
 }
 
@@ -224,6 +217,7 @@ p {
 }
 
 .table-shell {
+  max-height: 340px;
   overflow: auto;
   border: 1px solid var(--panel-line);
   border-radius: 7px;
@@ -245,6 +239,10 @@ td {
 }
 
 th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #252b34;
   color: var(--copper);
   font-size: 9.5px;
   font-weight: 900;
@@ -370,12 +368,12 @@ main {
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   gap: 12px;
 }
 
 .kpi-card {
-  min-height: 178px;
+  min-height: 240px;
   border: 1px solid rgba(227, 154, 100, 0.2);
   border-left: 3px solid var(--no-data);
   border-radius: 8px;
@@ -445,8 +443,8 @@ main {
 }
 
 .chart-wrap {
-  height: 92px;
-  padding: 3px 10px 9px;
+  height: 150px;
+  padding: 8px 10px 10px;
 }
 
 .no-chart {
@@ -471,12 +469,8 @@ main {
     flex-direction: column;
   }
 
-  .brand-text {
-    font-size: 32px;
-  }
-
-  .brand-o {
-    font-size: 42px;
+  .brand-logo {
+    width: min(210px, 70vw);
   }
 
   .topbar-right,

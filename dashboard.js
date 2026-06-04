@@ -4,6 +4,33 @@ let activeDepartment = "all";
 let activeStatus = "all";
 let chartInstances = [];
 
+const eventLabelPlugin = {
+  id: "eventLabelPlugin",
+  afterDatasetsDraw(chart) {
+    const events = chart.config.options.plugins.eventLabels?.events || [];
+    const meta = chart.getDatasetMeta(0);
+    const ctx = chart.ctx;
+
+    ctx.save();
+    ctx.fillStyle = "rgba(241, 240, 239, 0.72)";
+    ctx.font = "700 9px Lato, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+
+    meta.data.forEach((point, index) => {
+      const value = events[index];
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return;
+      ctx.fillText(Math.round(Number(value)), point.x, point.y - 8);
+    });
+
+    ctx.restore();
+  }
+};
+
+if (typeof Chart !== "undefined") {
+  Chart.register(eventLabelPlugin);
+}
+
 loadPreparedData();
 
 async function loadPreparedData() {
@@ -266,6 +293,7 @@ function renderChart(row) {
 
   const chartMonths = row.months.filter((month) => month.value !== null && month.value !== undefined);
   if (!chartMonths.length) return;
+  const eventValues = chartMonths.map((month) => month.events);
 
   const chart = new Chart(canvas, {
     type: "line",
@@ -296,7 +324,9 @@ function renderChart(row) {
       animation: false,
       responsive: true,
       maintainAspectRatio: false,
+      layout: { padding: { top: 24, right: 6, bottom: 2, left: 4 } },
       plugins: {
+        eventLabels: { events: eventValues },
         legend: { display: false },
         tooltip: {
           backgroundColor: "rgba(31, 36, 44, 0.96)",

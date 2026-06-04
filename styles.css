@@ -23,10 +23,12 @@ body {
   color: var(--text);
   font-family: "Lato", sans-serif;
   background:
-    linear-gradient(148deg, rgba(30, 35, 43, 0.98), rgba(37, 43, 52, 0.96) 48%, rgba(28, 32, 39, 0.98)),
-    repeating-linear-gradient(118deg, rgba(227, 154, 100, 0.055) 0 1px, transparent 1px 58px),
-    repeating-linear-gradient(30deg, transparent 0 360px, rgba(29, 78, 94, 0.12) 360px 520px, transparent 520px 920px);
-  background-attachment: fixed;
+    linear-gradient(148deg, rgba(30, 35, 43, 0.94), rgba(37, 43, 52, 0.91) 48%, rgba(28, 32, 39, 0.96)),
+    url("./assets/background-pattern.png");
+  background-attachment: fixed, fixed;
+  background-position: top left, top left;
+  background-repeat: repeat, repeat;
+  background-size: auto, auto;
 }
 
 body::before {

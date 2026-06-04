@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beOnd · Safety Performance Indicators · 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="beOnd SPI dashboard">
+      <span class="brand-text">BE<span class="brand-o">O</span>ND</span>
+    </a>
+    <div class="topbar-right">
+      <div class="topbar-meta">
+        <div class="topbar-title">Safety Performance Indicators · 2026</div>
+        <div class="topbar-date" id="loaded-date">Loading SPI data</div>
+      </div>
+      <label class="upload-btn" for="file-input">
+        <span class="upload-icon">UP</span>
+        Load Excel
+      </label>
+      <input id="file-input" type="file" accept=".xlsx,.xlsm,.xls">
+      <span class="file-name" id="file-name">SPI 2026 Final.xlsx</span>
+    </div>
+  </header>
+
+  <section class="summary-bar" id="summary-bar"></section>
+
+  <section class="missing-panel">
+    <div class="missing-head">
+      <div>
+        <h2>Missing Data</h2>
+        <p id="missing-subtitle">Due months are checked against each active SPI.</p>
+      </div>
+      <div class="missing-metrics" id="missing-metrics"></div>
+    </div>
+    <div class="table-shell">
+      <table>
+        <thead>
+          <tr>
+            <th>SPI Code</th>
+            <th>SPI Name</th>
+            <th>Department</th>
+            <th>Data Source</th>
+            <th>Missing</th>
+            <th>Months</th>
+          </tr>
+        </thead>
+        <tbody id="missing-table"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <nav class="filter-bar" id="filter-bar"></nav>
+
+  <main id="dashboard"></main>
+
+  <script src="./dashboard.js"></script>
+</body>
+</html>

@@ -67,7 +67,7 @@ main {
 
 .brand-logo {
   display: block;
-  width: min(238px, 42vw);
+  width: min(190px, 42vw);
   height: auto;
 }
 
@@ -470,7 +470,7 @@ main {
   }
 
   .brand-logo {
-    width: min(210px, 70vw);
+    width: min(180px, 70vw);
   }
 
   .topbar-right,

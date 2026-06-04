@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -21,12 +20,7 @@
         <div class="topbar-title">Safety Performance Indicators · 2026</div>
         <div class="topbar-date" id="loaded-date">Loading SPI data</div>
       </div>
-      <label class="upload-btn" for="file-input">
-        <span class="upload-icon">UP</span>
-        Load Excel
-      </label>
-      <input id="file-input" type="file" accept=".xlsx,.xlsm,.xls">
-      <span class="file-name" id="file-name">SPI 2026 Final.xlsx</span>
+      <div class="data-source" id="data-source">SPI 2026 Final.xlsx</div>
     </div>
   </header>
 

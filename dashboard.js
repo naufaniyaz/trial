@@ -4,7 +4,6 @@ let activeDepartment = "all";
 let activeStatus = "all";
 let chartInstances = [];
 
-document.getElementById("file-input").addEventListener("change", handleExcelUpload);
 loadPreparedData();
 
 async function loadPreparedData() {
@@ -16,32 +15,14 @@ async function loadPreparedData() {
       payload.sheets["Monthly Data Entry"] || [],
       payload.sheets["SPI Master"] || []
     );
-    document.getElementById("file-name").textContent = payload.workbookName || "Prepared SPI data";
+    document.getElementById("data-source").textContent = payload.workbookName || "Prepared SPI data";
     document.getElementById("loaded-date").textContent = `Loaded: ${formatLoadDate(payload.generatedAt)}`;
   } catch (error) {
     console.warn(error);
-    document.getElementById("loaded-date").textContent = "Load the SPI workbook";
-    document.getElementById("dashboard").innerHTML = '<div class="empty-state">Use Load Excel or run the VBA export to prepare dashboard data.</div>';
+    document.getElementById("loaded-date").textContent = "SPI data file missing";
+    document.getElementById("data-source").textContent = "data/spi-dashboard-data.json";
+    document.getElementById("dashboard").innerHTML = '<div class="empty-state">Dashboard data was not found. Upload data/spi-dashboard-data.json to GitHub and redeploy Netlify.</div>';
   }
-}
-
-function handleExcelUpload(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = (loadEvent) => {
-    const workbook = XLSX.read(new Uint8Array(loadEvent.target.result), { type: "array" });
-    buildDashboardFromRows(sheetToJson(workbook, "Monthly Data Entry"), sheetToJson(workbook, "SPI Master"));
-    document.getElementById("file-name").textContent = file.name;
-    document.getElementById("loaded-date").textContent = `Loaded: ${new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}`;
-  };
-  reader.readAsArrayBuffer(file);
-}
-
-function sheetToJson(workbook, sheetName) {
-  const sheet = workbook.Sheets[sheetName];
-  return sheet ? XLSX.utils.sheet_to_json(sheet, { defval: null }) : [];
 }
 
 function buildDashboardFromRows(monthlyRows, masterRows) {

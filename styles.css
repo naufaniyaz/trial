@@ -102,32 +102,7 @@ main {
   font-size: 11px;
 }
 
-.upload-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 32px;
-  padding: 0 14px;
-  border: 1px solid var(--copper);
-  border-radius: 5px;
-  color: var(--copper);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.upload-btn:hover {
-  background: var(--copper);
-  color: var(--obsidian);
-}
-
-#file-input {
-  display: none;
-}
-
-.file-name {
+.data-source {
   max-width: 150px;
   overflow: hidden;
   color: var(--copper-dim);
@@ -135,6 +110,7 @@ main {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 
 .summary-bar {
   display: flex;

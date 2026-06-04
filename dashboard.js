@@ -13,7 +13,7 @@ const eventLabelPlugin = {
 
     ctx.save();
     ctx.fillStyle = "rgba(241, 240, 239, 0.72)";
-    ctx.font = "700 9px Lato, sans-serif";
+    ctx.font = "700 11px Lato, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
 
@@ -42,12 +42,12 @@ async function loadPreparedData() {
       payload.sheets["Monthly Data Entry"] || [],
       payload.sheets["SPI Master"] || []
     );
-    document.getElementById("data-source").textContent = payload.workbookName || "Prepared SPI data";
+    document.getElementById("data-source").title = payload.workbookName || "Prepared SPI data";
     document.getElementById("loaded-date").textContent = `Loaded: ${formatLoadDate(payload.generatedAt)}`;
   } catch (error) {
     console.warn(error);
     document.getElementById("loaded-date").textContent = "SPI data file missing";
-    document.getElementById("data-source").textContent = "data/spi-dashboard-data.json";
+    document.getElementById("data-source").title = "data/spi-dashboard-data.json";
     document.getElementById("dashboard").innerHTML = '<div class="empty-state">Dashboard data was not found. Upload data/spi-dashboard-data.json to GitHub and redeploy Netlify.</div>';
   }
 }
@@ -302,10 +302,11 @@ function renderChart(row) {
         {
           label: "Status Value",
           data: chartMonths.map((month) => month.value),
-          borderColor: "#e39a64",
-          backgroundColor: "rgba(227, 154, 100, 0.08)",
+          borderColor: "#D2926A",
+          backgroundColor: "rgba(210, 146, 106, 0.08)",
           borderWidth: 2,
-          pointRadius: 3,
+          pointRadius: 4,
+          pointHoverRadius: 5,
           pointBackgroundColor: chartMonths.map((month) => {
             const cls = statusClass(month.status);
             if (cls === "danger") return "#e45454";
@@ -328,21 +329,21 @@ function renderChart(row) {
         eventLabels: { events: eventValues },
         legend: { display: false },
         tooltip: {
-          backgroundColor: "rgba(31, 36, 44, 0.96)",
-          borderColor: "rgba(227, 154, 100, 0.3)",
+          backgroundColor: "#2A2E36",
+          borderColor: "rgba(210, 146, 106, 0.38)",
           borderWidth: 1,
-          titleColor: "#e39a64",
+          titleColor: "#D2926A",
           bodyColor: "#f1f0ef"
         }
       },
       scales: {
         x: {
           grid: { color: "rgba(241,240,239,0.045)" },
-          ticks: { color: "rgba(241,240,239,0.45)", font: { size: 9 }, maxRotation: 0 }
+          ticks: { color: "rgba(241,240,239,0.55)", font: { size: 11 }, maxRotation: 0 }
         },
         y: {
           grid: { color: "rgba(241,240,239,0.045)" },
-          ticks: { color: "rgba(241,240,239,0.45)", font: { size: 9 }, maxTicksLimit: 4 }
+          ticks: { color: "rgba(241,240,239,0.55)", font: { size: 11 }, maxTicksLimit: 4 }
         }
       }
     }

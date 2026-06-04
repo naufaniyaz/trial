@@ -182,7 +182,7 @@ function renderMissingData(rows) {
     <div class="metric-card good"><span class="metric-number">${complete}%</span><span class="metric-label">Complete</span></div>
   `;
 
-  document.getElementById("missing-table").innerHTML = missing.length ? missing.slice(0, 28).map((row) => `
+  document.getElementById("missing-table").innerHTML = missing.length ? missing.map((row) => `
     <tr>
       <td><strong>${escapeHtml(row.code)}</strong></td>
       <td>${escapeHtml(row.name)}</td>
@@ -196,8 +196,7 @@ function renderMissingData(rows) {
 
 function hasEnteredMonthlyValue(month) {
   return month.events !== null && month.events !== undefined
-    || month.originalValue !== null && month.originalValue !== undefined
-    || month.value !== null && month.value !== undefined;
+    || month.originalValue !== null && month.originalValue !== undefined;
 }
 
 function currentDueMonthCount() {
